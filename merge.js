@@ -24,7 +24,19 @@ function merge(A, B) {
   return newArray;
 }
 
-let array1 = [1, 5, 8];
-let array2 = [2, 4, 9];
+// this function ^ merges an array based on lower number
 
-console.log(merge(array1, array2));
+function mergeSort(arr) {
+  if (arr.length > 1) {
+    let middle = Math.round((arr.length - 1) / 2); // find middle index rounded to closest int
+    let firstArray = mergeSort(arr.slice(0, middle)); // this array is the first half of arr => recursively broken down and merged together
+    let secondArray = mergeSort(arr.slice(middle)); // this array is the second half of arr => recursively broken down and merged together
+    return merge(firstArray, secondArray);
+  } else {
+    return arr; // base case - just returns a single element in its own array after splitting
+  }
+}
+
+let printArray = [1, 6, 7, 3, 21, 5, 6, 2, 3, 4, 0, 1, 55];
+
+console.log(mergeSort(printArray));
